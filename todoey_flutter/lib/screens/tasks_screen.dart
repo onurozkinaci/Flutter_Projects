@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todoey_flutter/models/task_data.dart';
 import 'package:todoey_flutter/screens/add_task_screen.dart';
 import '../models/task.dart';
 import '../widgets/tasks_list.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
+class TasksScreen extends StatelessWidget {
   /*List<Task> tasks = [
     /*Task(taskName: 'Buy milk'),
     Task(taskName: 'Buy eggs'),
     Task(taskName: 'Buy bread'),*/
   ];*/
 
-  void addItemToList(String textOfTask) {
+  /*void addItemToList(String textOfTask) {
     setState(() {
       Provider.of<List<Task>>(context).add(Task(taskName: textOfTask));
     });
     Navigator.pop(context); //pop-up will be closed and will be returned to
     // parent of it(where it is opened from) which is TaskScreen class.
   }
+  */
 
   @override
   Widget build(BuildContext context) {
-    var result = Provider.of<List<Task>>(context);
-
     return Scaffold(
         backgroundColor: Colors.lightBlueAccent,
         floatingActionButton: FloatingActionButton(
@@ -76,7 +71,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         fontWeight: FontWeight.w700),
                   ),
                   Text(
-                    '${result.length} Tasks',
+                    '${Provider.of<TaskData>(context).taskCount} Tasks',
                     style: TextStyle(color: Colors.white, fontSize: 18.0),
                   )
                 ],

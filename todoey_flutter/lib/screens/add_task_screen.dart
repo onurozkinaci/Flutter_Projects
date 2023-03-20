@@ -4,6 +4,8 @@ import 'package:todoey_flutter/models/task.dart';
 import 'package:todoey_flutter/screens/tasks_screen.dart';
 import 'package:todoey_flutter/widgets/tasks_list.dart';
 
+import '../models/task_data.dart';
+
 class AddTaskScreen extends StatefulWidget {
   /*final Function(String taskName) onAddItem;
   AddTaskScreen(this.onAddItem);*/
@@ -48,10 +50,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             ),
             TextButton(
                 onPressed: () {
-                  setState(() {
-                    //widget.onAddItem(textController.text);
-                    //denemetextController.clear();
-                  });
+                  //setState(() {
+                  //widget.onAddItem(textController.text);
+                  //denemetextController.clear();
+                  //----------------------------------------
+                  //**To add a new task with the usage of State Management via 'Provider.of()';
+                  Provider.of<TaskData>(context, listen: false)
+                      .addNewTask(textController.text);
+                  Navigator.pop(context); //butona tiklandiktan sonra
+                  // pop-up kapanir ve TaskScreen ekranina geri donulur.
+                  //});
                 },
                 style: ButtonStyle(
                     backgroundColor:
